@@ -4,7 +4,7 @@
 ![](./images/ui_screen_1.png) ![](./images/ui_screen_2.png) ![](./images/ui_screen_3.png)
 
 ---
-> 由于在CTF Reverse中经常遇到迷宫题, 本人算法很烂不会写BFS, 于是一气之下写了个GUI自动化求解器
+> 主播由于在CTF Reverse中经常遇到迷宫题, 本人算法很烂不会写BFS, 于是一气之下写了个GUI自动化求解器
 > 
 > 刚好学了 Compose, 没想到 Android 也能搬到 Desktop 上, 于是就有了这个工具
 

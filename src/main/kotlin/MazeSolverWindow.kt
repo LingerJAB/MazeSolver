@@ -757,6 +757,7 @@ fun App() {
 
 @Composable
 fun HelpDialog(showDialog: Boolean, onDismiss: () -> Unit) {
+    val scrollState = rememberScrollState()
     if (showDialog) {
         DialogWindow(
             onCloseRequest = onDismiss,
@@ -767,7 +768,47 @@ fun HelpDialog(showDialog: Boolean, onDismiss: () -> Unit) {
                     .padding(24.dp)
                     .sizeIn(minWidth = 300.dp, minHeight = 150.dp)
             ) {
-                Text("这是一个迷宫求解器。\n你可以输入迷宫图后点击求解按钮。")
+                Text(
+                    modifier = Modifier.verticalScroll(scrollState),
+                    text = """更多请查看: https://github.com/LingerJAB/MazeSolver
+
+输入:
+首先将在输入中按照指示,填入字符串迷宫,例如:
+'#', 'S', '#', '#', '#', '#', '#', '#', '#', '#',
+'#', '*', '*', '#', '#', '#', '#', '#', '#', '#',
+'#', '#', '*', '#', '#', '#', '#', '#', '#', '#',
+'#', '#', '*', '*', '#', '#', '#', '#', '#', '#',
+'#', '#', '#', '*', '#', '#', '#', '#', '#', '#',
+'#', '*', '*', '*', '#', '#', '#', 'E', '#', '#',
+'#', '*', '#', '#', '#', '#', '#', '*', '#', '#',
+'#', '*', '#', '#', '#', '#', '#', '*', '#', '#',
+'#', '*', '*', '*', '*', '*', '*', '*', '#', '#',
+'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'
+
+- Start 为迷宫起始位置 如 S
+- End 为迷宫结束位置 如 E
+- Wall 为迷宫墙, 必填 如 #
+- Empty 为迷宫路, 必填 如 *
+- Ignore 为忽略字符, 会过滤影响分析的字符 如 ',
+
+
+可视化
+分析成功后会自动生成可视化网格, 点击编辑锁定按钮即可解锁编辑
+解锁编辑后可以编辑网格
+
+- 左键: 编辑Wall和Empty, 分别为黑色和白色
+- 右键: 设置Start和End, 分别为绿色和红色
+- Visited: 求解后会生成路线, 为绿色
+
+输出
+求解后会自动生成输出
+
+- 步骤: 路线的步骤,如D, R, D, D, R, D, D, L, L, D, D, D...
+- 路径: 路线的坐标,如(0, 1) (1, 1) (1, 2) (2, 2) (3, 2)...
+- 文本: 迷宫字符化,如1 S 1 1 1 1 1 1 1 1\n1 0 0 1 1 1 1...
+- 步骤: 迷宫转代码,如char grid[10][11] {"1S11111111", ...
+输出可以自定义字符,格式,语言等"""
+                )
             }
         }
     }
@@ -781,12 +822,11 @@ fun AboutDialog(showDialog: Boolean, onDismiss: () -> Unit) {
             onCloseRequest = onDismiss,
             title = "关于"
         ) {
-            Box(
-                modifier = Modifier
-                    .padding(24.dp)
-                    .sizeIn(minWidth = 300.dp, minHeight = 150.dp)
-            ) {
-                Text("关于软件")
+            Box(modifier = Modifier.padding(24.dp).sizeIn(minWidth = 300.dp, minHeight = 150.dp)) {
+                Column {
+                    Text("GUI Maze Solver for ASCII Maze in CTF")
+                    Text("一款图形迷宫求解器，用于CTF")
+                }
             }
         }
     }
