@@ -6,8 +6,8 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose") version "2.0.10"
 }
 
-group = "io.github. lingerjab"
-version = "1.0-SNAPSHOT"
+group = "io.github.lingerjab"
+version = "1.0.0"
 repositories {
     maven { url = uri("https://maven.aliyun.com/repository/public/") }
     maven { url = uri("https://maven.aliyun.com/repository/gradle-plugin/") }
@@ -28,13 +28,12 @@ compose.desktop {
     application {
         mainClass = "io.github.lingerjab.MazeSolverWindowKt"
         nativeDistributions {
-            targetFormats(TargetFormat.AppImage,)
+            targetFormats(TargetFormat.AppImage, TargetFormat.Dmg)
             packageName = "Maze Solver"
             packageVersion = "1.0.0"
             includeAllModules = false
 
             windows { iconFile.set(project.file("src/main/resources/favicon.ico")) }
-
         }
     }
 }
