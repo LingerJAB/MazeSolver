@@ -28,7 +28,7 @@ compose.desktop {
     application {
         mainClass = "io.github.lingerjab.MazeSolverWindowKt"
         nativeDistributions {
-            targetFormats(TargetFormat.AppImage)
+            targetFormats(TargetFormat.AppImage, TargetFormat.)
             packageName = "Maze Solver"
             packageVersion = "1.0.0"
             includeAllModules = false
