@@ -2,7 +2,7 @@
 
 一款基于 Compose for Desktop 的 GUI 字符迷宫求解器
 
-<img src="./images/ui_screen_1.png" width="200"/> <img src="./images/ui_screen_3.png" width="200"/>
+<img src="./images/ui_screen_1.png" width="250"/> <img src="./images/ui_screen_3.png" width="250"/>
 
 ---
 > 主播由于在CTF Reverse/Misc中经常遇到迷宫题，~~本人算法很烂不会写BFS，~~ 于是一气之下写了个GUI自动化求解器
@@ -57,12 +57,29 @@
 
 输出结果可以设置自定义字符，格式，语言等
 
-## ⬇️下载
-请到 [Github Release](https://github.com/LingerJAB/MazeSolver/releases) 下载
+## ⬇️构建&下载
+`exe`和`jar`下载请到 [Github Release](https://github.com/LingerJAB/MazeSolver/releases) 下载
 
+手动部署请拉取项目`.git`，并在`build.gradle.kts`中，修改以下代码
+```kotlin
+compose.desktop {
+    application {
+        mainClass = "io.github.lingerjab.MazeSolverWindowKt"
+        nativeDistributions {
+            targetFormats(TargetFormat.AppImage, TargetFormat.Dmg)
+            packageName = "Maze Solver"
+            packageVersion = "1.0.0"
+            includeAllModules = false
+            windows { iconFile.set(project.file("src/main/resources/favicon.ico")) }
+        }
+    }
+}
+```
+其中`TargetFormat.Dmg`即为Mac安装包，添加`TargetFormat.Msi(Deb)`同理
+
+然后执行`gradle packageRelease<TargetFormat>`即可，构建后会在`./build/compose/`文件夹下
 
 ## 🥺捐赠
 给孩子换个大一点的内存条吧, 开发时IDEA都急得爆内存不足了
 
-<img src="./images/wxpay.jpg" width="111" alt="wxpay"/>
-<img src="./images/alipay.jpg" width="111" alt="alipay"/>
+<img src="./images/wxpay.jpg" width="150" alt="wxpay"/>  <img src="./images/alipay.jpg" width="150" alt="alipay"/>
